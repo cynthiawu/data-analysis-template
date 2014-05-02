@@ -1,4 +1,4 @@
-load("~/proj2/data-analysis-template/FinalData.RData")
+IndData = readRDS("~/proj2/data-analysis-template/data/cleaned/clean1.rda")
 
 manu = c("Meat products","Food industries, n.s.","Apparel and accessories, except knit","Pulp, paper, and paperboard mills","Soaps and cosmetics","Miscellaneous plastics products","Footwear, except rubber and plastic","Furniture and fixtures","Iron and steel foundries")
 retail = c("Department stores","Food stores, n.e.c.","Apparel and accessory stores, except shoe","Shoe stores","Furniture and home furnishings stores","Eating and drinking places","Book and stationery stores","Jewelry stores")
@@ -28,3 +28,4 @@ levels(edudata$ind1990) <- lev
 dataclean = edudata[as.character(edudata$ind1990) != "bad data",]
 data <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
 colnames(data) <- c("year", "msa", "ind1990", "jobs")
+saveRDS(data,file="~/proj2/data-analysis-template/data/cleaned/clean2.rda")
