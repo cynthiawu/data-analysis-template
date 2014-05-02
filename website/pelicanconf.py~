@@ -10,7 +10,6 @@ import os
 AUTHOR = u'Cynthia Wu'
 SITENAME = u'Data Analysis Project'
 SITESUBTITLE = u'Template using the iPython notebook'
-GITHUB_REPOSITORY_URL = u'https://github.com/cynthiawu/data-analysis-template'
 
 ###################################################
 # FINER WEBSITE CONF (Defaults should be okay)
