@@ -1,46 +1,46 @@
 library(foreign)
-citydata <- read.dta("/Users/biyingli/src/stat133/data-analysis-template/city-data.dta")
-subset(citydata, select=c("year", "msa", "ind1990", "jobs"))
-NoEduData <- aggregate(cbind(citydata$jobs) ~ citydata$year + citydata$msa + citydata$ind1990, FUN = sum)
 
-NoEduData3[,3] <- gsub("Meat products","Maunfacture",as.character(NoEduData3[,3]))
+IndData <- read.dta("/Users/biyingli/src/stat133/data-analysis-template/industrydata.dta")
+IndData <- subset(IndData, select=c("year", "msa", "ind1990", "jobs"))
+NoEduData <- aggregate(cbind(IndData$jobs) ~ IndData$year + IndData$msa + IndData$ind1990, FUN = sum)
+colnames(NoEduData) <- c("year", "place", "ind1990", "jobs")
 
+manu = c("Meat products","Food industries, n.s.","Apparel and accessories, except knit","Pulp, paper, and paperboard mills","Soaps and cosmetics","Miscellaneous plastics products","Footwear, except rubber and plastic","Furniture and fixtures","Iron and steel foundries")
+retail = c("Department stores","Food stores, n.e.c.","Apparel and accessory stores, except shoe","Shoe stores","Furniture and home furnishings stores","Eating and drinking places","Book and stationery stores","Jewelry stores")
+hightech = c("Computers and related equipment","Machinery, except electrical, n.e.c.","Radio, TV, and communication equipment","Electrical machinery, equipment, and supplies, n.e.c.","Aircraft and parts","Computer and data processing services","Computer and data processing services","Engineering, architectural, and surveying services","Machinery, n.s.","Motor vehicles and motor vehicle equipment")
 
+lev = levels(NoEduData$ind1990)
 
-mgsub <- function(pattern, replacement, x, ...) {
-  for (i in 1:length(pattern)) {
-    result <- gsub(pattern[i], replacement[i], x, ...)
+for (i in 1:length(lev)) {
+  if (lev[i] %in% manu) {
+    lev[i] <- "Manufacturing"
   }
-  result
+  else if (lev[i] %in% retail) {
+    lev[i] <- "Retail"
+  }
+  else if (lev[i] %in% hightech) {
+    lev[i] <- "Hightech"
+  }
+  else {
+    lev[i] <- "bad data"
+  }
 }
+levels(NoEduData$ind1990) <- lev
 
+dataclean = NoEduData[as.character(NoEduData$ind1990) != "bad data",]
 
-NoEduData3[,3] <- gsub("Meat products","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Food industries, n.s.","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Apparel and accessories, except knit","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Pulp, paper, and paperboard mills","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Soaps and cosmetics","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Miscellaneous plastics products","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Footwear, except rubber and plastic","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Furniture and fixtures","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Iron and steel foundries","Maunfacturing",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Department stores","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Food stores, n.e.c.","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Apparel and accessory stores, except shoe","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Shoe stores","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Furniture and home furnishings stores","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Eating and drinking places","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Book and stationery stores","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Jewelry stores","Retail",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Computers and related equipment","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Machinery, except electrical, n.e.c.","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Radio, TV, and communication equipment","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Electrical machinery, equipment, and supplies, n.e.c.","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Electrical machinery, equipment, and supplies, n.s.","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Aircraft and parts","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Computer and data processing services","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Engineering, architectural, and surveying services","Hightech",as.character(NoEduData3[,3]))
-NoEduData3[,3] <- gsub("Machinery, n.s.","Hightech",as.character(NoEduData[,3]))
-NoEduData3[,3] <- gsub("Motor vehicles and motor vehicle equipment","Hightech",as.character(NoEduData[,3]))
+FinalData <- aggregate(cbind(dataclean[,4]) ~ dataclean[,1] + dataclean[,2] + dataclean[,3], FUN = sum)
 
-FinalData <- aggregate(cbind(NoEduData3[,4]) ~ NoEduData3[,1] + NoEduData3[,2] + NoEduData3[,3], FUN = sum)
+colnames(FinalData) <- c("year", "place", "industry", "jobs")
+
+Hightech1980 <- subset(FinalData, year == 1980 & industry == "Hightech")
+Manufacturing1980 <- subset(FinalData, year == 1980 & industry == "Manufacturing")
+Retail1980 <- subset(FinalData, year == 1980 & industry == "Retail")
+
+Hightech1990 <- subset(FinalData, year == 1990 & industry == "Hightech")
+Manufacturing1990 <- subset(FinalData, year == 1990 & industry == "Manufacturing")
+Retail1990 <- subset(FinalData, year == 1990 & industry == "Retail")
+
+Hightech2000 <- subset(FinalData, year == 2000 & industry == "Hightech")
+Manufacturing2000 <- subset(FinalData, year == 2000 & industry == "Manufacturing")
+Retail2000 <- subset(FinalData, year == 2000 & industry == "Retail")
