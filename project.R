@@ -34,16 +34,41 @@ FinalData <- aggregate(cbind(dataclean[,4]) ~ dataclean[,1] + dataclean[,2] + da
 colnames(FinalData) <- c("year", "place", "industry", "jobs")
 
 Hightech1980 <- subset(FinalData, year == 1980 & industry == "Hightech")
+Hightech1980["log_jobs"] <- NA
+Hightech1980[,5] <- log(Hightech1980[,4])
+
 Manufacturing1980 <- subset(FinalData, year == 1980 & industry == "Manufacturing")
+Manufacturing1980["log_jobs"] <- NA
+Manufacturing1980[,5] <- log(Manufacturing1980[,4])
+
 Retail1980 <- subset(FinalData, year == 1980 & industry == "Retail")
+Retail1980["log_jobs"] <- NA
+Retail1980[,5] <- log(Retail1980[,4])
 
 Hightech1990 <- subset(FinalData, year == 1990 & industry == "Hightech")
+Hightech1990["log_jobs"] <- NA
+Hightech1990[,5] <- log(Hightech1990[,4])
+
 Manufacturing1990 <- subset(FinalData, year == 1990 & industry == "Manufacturing")
+Manufacturing1990["log_jobs"] <- NA
+Manufacturing1990[,5] <- log(Manufacturing1990[,4])
+
 Retail1990 <- subset(FinalData, year == 1990 & industry == "Retail")
+Retail1990["log_jobs"] <- NA
+Retail1990[,5] <- log(Retail1990[,4])
 
 Hightech2000 <- subset(FinalData, year == 2000 & industry == "Hightech")
+Hightech2000["log_jobs"] <- NA
+Hightech2000[,5] <- log(Hightech2000[,4])
+
 Manufacturing2000 <- subset(FinalData, year == 2000 & industry == "Manufacturing")
+Manufacturing2000["log_jobs"] <- NA
+Manufacturing2000[,5] <- log(Manufacturing2000[,4])
+
 Retail2000 <- subset(FinalData, year == 2000 & industry == "Retail")
+Retail2000["log_jobs"] <- NA
+Retail2000[,5] <- log(Retail2000[,4])
+
 
 RegM1980 <- lm(Hightech1980[,4] ~ Manufacturing1980[,4])
 RegR1980 <- lm(Hightech1980[,4] ~ Retail1980[,4])
@@ -51,3 +76,23 @@ RegM1990 <- lm(Hightech1990[,4] ~ Manufacturing1990[,4])
 RegR1990 <- lm(Hightech1990[,4] ~ Retail1990[,4])
 RegM2000 <- lm(Hightech2000[,4] ~ Manufacturing2000[,4])
 RegR2000 <- lm(Hightech2000[,4] ~ Retail2000[,4])
+
+
+LogRegM1980 <- lm(Hightech1980[,5] ~ Manufacturing1980[,5])
+LogRegR1980 <- lm(Hightech1980[,5] ~ Retail1980[,5])
+
+LogRegM1990 <- lm(Hightech1990[,5] ~ Manufacturing1990[,5])
+LogRegR1990 <- lm(Hightech1990[,5] ~ Retail1990[,5])
+
+LogRegM2000 <- lm(Hightech2000[,5] ~ Manufacturing2000[,5])
+LogRegR2000 <- lm(Hightech2000[,5] ~ Retail2000[,5])
+
+
+plot(Hightech1980[,5], Manufacturing1980[,5])
+abline(LogRegM1980)
+
+plot(Hightech1990[,5], Manufacturing1990[,5])
+abline(LogRegM1990)
+
+plot(Hightech2000[,5], Manufacturing2000[,5])
+abline(LogRegM2000)
