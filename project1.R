@@ -105,3 +105,24 @@ abline(LogRegR1990)
 
 plot(Hightech2000[,5], Retail2000[,5], xlab = "log value of Hightech Employment", ylab = "log value of Retail Employment", main = "Regression of Retail on Hightech Employment in 2000")
 abline(LogRegR2000)
+
+
+require(maps)
+require(ggplot2)
+require(data.table)
+
+us.state.map <- map_data('state')
+head(us.state.map)
+states <- levels(as.factor(us.state.map$region))
+df <- data.frame(region = states, value = runif(length(states), min=0, max=100), stringsAsFactors = FALSE)
+
+map.data <- merge(us.state.map, df, by='region', all=T)
+map.data <- map.data[order(map.data$order),]
+head(map.data)
+
+map.county <- data.table(map_data('county'))
+map.county[,value:=sample(5, 1), by=list(region, subregion)]
+
+ggplot(map.data, aes(x = long, y = lat, group=group, fill=value)) + geom_polygon(colour = "white")
+
+ggplot(map.county, aes(x = long, y = lat, group=group, fill=as.factor(value))) + geom_polygon(colour = "white")
