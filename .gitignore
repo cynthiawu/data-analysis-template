@@ -2,7 +2,7 @@
 *~
 # C extensions
 *.so
-
+.Rhistory
 # Packages
 *.egg
 *.egg-info
