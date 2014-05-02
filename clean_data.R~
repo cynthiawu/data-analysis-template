@@ -26,5 +26,4 @@ for (i in 1:length(lev)) {
 levels(edudata$ind1990) <- lev
 
 dataclean = edudata[as.character(edudata$ind1990) != "bad data",]
-data <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
-colnames(data) <- c("year", "msa", "ind1990", "jobs")
+dataclean <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
