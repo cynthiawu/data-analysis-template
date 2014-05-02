@@ -418,7 +418,7 @@ In&amp;nbsp;[4]:
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[6]:
+In&amp;nbsp;[15]:
 &lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;R&lt;/span&gt;
@@ -443,28 +443,11 @@ In&amp;nbsp;[6]:
 
 
 &lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
-
-
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
 &lt;pre&gt;
-
-Attaching package: ‘XML’
-
-The following object(s) are masked from ‘package:tools’:
-
-    toHTML
-
-&amp;lt;PLANT&amp;gt;
-  &amp;lt;COMMON&amp;gt;Bloodroot&amp;lt;/COMMON&amp;gt;
-  &amp;lt;BOTANICAL&amp;gt;Sanguinaria canadensis&amp;lt;/BOTANICAL&amp;gt;
-  &amp;lt;ZONE&amp;gt;4&amp;lt;/ZONE&amp;gt;
-  &amp;lt;LIGHT&amp;gt;Mostly Shady&amp;lt;/LIGHT&amp;gt;
-  &amp;lt;PRICE&amp;gt;$2.44&amp;lt;/PRICE&amp;gt;
-  &amp;lt;AVAILABILITY&amp;gt;031599&amp;lt;/AVAILABILITY&amp;gt;
-&amp;lt;/PLANT&amp;gt; 
+Error in library(XML) : there is no package called ‘XML’
 
 &lt;/pre&gt;
-
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4906,6 +4889,77 @@ oOlPA0UAAAAASUVORK5CYII=
 &lt;h3 id="Loading-Raw-Data-into-Data-Frames"&gt;Loading Raw Data into Data Frames&lt;a class="anchor-link" href="#Loading-Raw-Data-into-Data-Frames"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
 &lt;/div&gt;
 
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[10]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;load_ext&lt;/span&gt; &lt;span class="n"&gt;rmagic&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+The rmagic extension is already loaded. To reload it, use:
+  %reload_ext rmagic
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[16]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;R&lt;/span&gt;
+&lt;span class="n"&gt;library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;foreign&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;IndData&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/home/oski/data-analysis-template/industrydata.dta&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IndData&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
+
+&lt;pre&gt;
+  year         msa                              ind1990 edu jobs
+1 1980 Abilene, TX                        Meat products   1  140
+2 1980 Abilene, TX                        Meat products   2   60
+3 1980 Abilene, TX                        Meat products   3   20
+4 1980 Abilene, TX Apparel and accessories, except knit   1  120
+5 1980 Abilene, TX Apparel and accessories, except knit   2   20
+6 1980 Abilene, TX Apparel and accessories, except knit   3    0
+
+&lt;/pre&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 
 &lt;/div&gt;

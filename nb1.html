@@ -1953,7 +1953,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[15]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
@@ -1978,28 +1978,11 @@ In&nbsp;[6]:
 
 
 <div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
-
-
+<div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-
-Attaching package: ‘XML’
-
-The following object(s) are masked from ‘package:tools’:
-
-    toHTML
-
-&lt;PLANT&gt;
-  &lt;COMMON&gt;Bloodroot&lt;/COMMON&gt;
-  &lt;BOTANICAL&gt;Sanguinaria canadensis&lt;/BOTANICAL&gt;
-  &lt;ZONE&gt;4&lt;/ZONE&gt;
-  &lt;LIGHT&gt;Mostly Shady&lt;/LIGHT&gt;
-  &lt;PRICE&gt;$2.44&lt;/PRICE&gt;
-  &lt;AVAILABILITY&gt;031599&lt;/AVAILABILITY&gt;
-&lt;/PLANT&gt; 
+Error in library(XML) : there is no package called ‘XML’
 
 </pre>
-
 </div>
 </div>
 
@@ -6441,6 +6424,77 @@ oOlPA0UAAAAASUVORK5CYII=
 <h3 id="Loading-Raw-Data-into-Data-Frames">Loading Raw Data into Data Frames<a class="anchor-link" href="#Loading-Raw-Data-into-Data-Frames">&#182;</a></h3>
 </div>
 
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+The rmagic extension is already loaded. To reload it, use:
+  %reload_ext rmagic
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
+<span class="n">library</span><span class="p">(</span><span class="n">foreign</span><span class="p">)</span>
+<span class="n">IndData</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">dta</span><span class="p">(</span><span class="s">&quot;/home/oski/data-analysis-template/industrydata.dta&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">IndData</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+  year         msa                              ind1990 edu jobs
+1 1980 Abilene, TX                        Meat products   1  140
+2 1980 Abilene, TX                        Meat products   2   60
+3 1980 Abilene, TX                        Meat products   3   20
+4 1980 Abilene, TX Apparel and accessories, except knit   1  120
+5 1980 Abilene, TX Apparel and accessories, except knit   2   20
+6 1980 Abilene, TX Apparel and accessories, except knit   3    0
+
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
