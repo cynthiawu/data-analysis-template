@@ -2,7 +2,7 @@ library(foreign)
 
 IndData <- read.dta("/Users/biyingli/src/stat133/data-analysis-template/industrydata.dta")
 IndData <- subset(IndData, select=c("year", "msa", "ind1990", "jobs"))
-NoEduData <- aggregate(cbind(IndData$jobs) ~ IndData$year + IndData$msa + IndData$ind1990, FUN = sum)
+NoEduData <- aggregate(cbind(IndData[,4]) ~ IndData[,1] + IndData[,2] + IndData[,3], FUN = sum)
 colnames(NoEduData) <- c("year", "place", "ind1990", "jobs")
 
 manu = c("Meat products","Food industries, n.s.","Apparel and accessories, except knit","Pulp, paper, and paperboard mills","Soaps and cosmetics","Miscellaneous plastics products","Footwear, except rubber and plastic","Furniture and fixtures","Iron and steel foundries")
