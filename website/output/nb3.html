@@ -1720,7 +1720,7 @@ init_mathjax();
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Data Analysis"/>
             <meta property="og:url" content="http://cynthiawu.github.io/data-analysis-template/nb3.html"/>
-            <meta property="og:description" content="In this notebook, you'll perform the actual analysis of the data stored in the directory ./data/cleaned If the data is not ready yet (e.g. the other members of the team in charge of cleaning the data are not done yet), you may want to simulate cleaned data ..."/>
+            <meta property="og:description" content="Team members responsible for this notebook: List the team members contributing to this notebook, along with their responsabilities: team member 1 name: team member 1 responsabilities team member 2 name: team member 2 responsabilities etc. I advise you to work at least in pairs for each project notebook, as you ..."/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://cynthiawu.github.io/data-analysis-template/theme/css/bootstrap.min.css" type="text/css"/>
@@ -1815,15 +1815,6 @@ Data Analysis Project            </a>
                 </div>
                 <p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook, you'll perform the actual analysis of the data stored in the directory</p>
-<pre><code>./data/cleaned</code></pre>
-<p>If the data is not ready yet (e.g. the other members of the team in charge of cleaning the data are not done yet), you may want to simulate cleaned data in the form you want them to be in order to perform the analysis. This may also help you data cleaning team to come up with the rigth data frame. If you choose to do so, store your simulated data into the directory</p>
-<pre><code>./data/simulated</code></pre>
-<p>Having performed analysis of simulated data may help you with the analysis of the actual data, since you will be able to notice deviations between the real and simulated data, which may be worth explaining and investigating further.</p>
-<p>The graphics your going to produce as a result of your analysis should be store in the directory:</p>
-<pre><code>./visualization</code></pre>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="team-members-responsible-for-this-notebook">Team members responsible for this notebook:</h2>
 <p>List the team members contributing to this notebook, along with their responsabilities:</p>
 <ul>
@@ -1832,6 +1823,137 @@ Data Analysis Project            </a>
 <li>etc.</li>
 </ul>
 <p>I advise you to work at least in pairs for each project notebook, as you did for the homework assignments. Of course, all team members may participate to each notebook.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook, you'll perform the actual analysis of the data stored in the directory</p>
+<pre><code>./data/cleaned</code></pre>
+<p>If the data is not ready yet (e.g. the other members of the team in charge of cleaning the data are not done yet), you may want to simulate cleaned data in the form you want them to be in order to perform the analysis. This may also help you data cleaning team to come up with the rigth data frame. If you choose to do so, store your simulated data into the directory</p>
+<pre><code>./data/simulated</code></pre>
+<p>Having performed analysis of simulated data may help you with the analysis of the actual data, since you will be able to notice deviations between the real and simulated data, which may be worth explaining and investigating further.</p>
+<p>The graphics your going to produce as a result of your analysis should be store in the directory:</p>
+<pre><code>./visualization</code></pre>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
+<span class="n">Hightech1980</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1980</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Hightech&quot;</span><span class="p">)</span>
+<span class="n">Hightech1980</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Manufacturing1980</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1980</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Manufacturing&quot;</span><span class="p">)</span>
+<span class="n">Manufacturing1980</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Retail1980</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1980</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Retail&quot;</span><span class="p">)</span>
+<span class="n">Retail1980</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Retail1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Retail1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Hightech1990</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1990</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Hightech&quot;</span><span class="p">)</span>
+<span class="n">Hightech1990</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Manufacturing1990</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1990</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Manufacturing&quot;</span><span class="p">)</span>
+<span class="n">Manufacturing1990</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Manufacturing1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Manufacturing1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Retail1990</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">1990</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Retail&quot;</span><span class="p">)</span>
+<span class="n">Retail1990</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Retail1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Retail1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Hightech2000</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">2000</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Hightech&quot;</span><span class="p">)</span>
+<span class="n">Hightech2000</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Manufacturing2000</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">2000</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Manufacturing&quot;</span><span class="p">)</span>
+<span class="n">Manufacturing2000</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Manufacturing2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Manufacturing2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">Retail2000</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="n">year</span> <span class="o">==</span> <span class="mi">2000</span> <span class="o">&amp;</span> <span class="n">industry</span> <span class="o">==</span> <span class="s">&quot;Retail&quot;</span><span class="p">)</span>
+<span class="n">Retail2000</span><span class="p">[</span><span class="s">&quot;log_jobs&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">NA</span>
+<span class="n">Retail2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">log</span><span class="p">(</span><span class="n">Retail2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
+<span class="n">RegM1980</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">RegR1980</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">RegM1990</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">RegR1990</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail1990</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">RegM2000</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">RegR2000</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail2000</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">],</span> <span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">4</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;value of Manufacturing Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Manufacturing on Hightech Employment in 1980&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">RegM1980</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
+<span class="n">LogRegM1980</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">LogRegR1980</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">LogRegM1990</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">LogRegR1990</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">LogRegM2000</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Manufacturing2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">LogRegR2000</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">]</span> <span class="o">~</span> <span class="n">Retail2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Manufacturing1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Manufacturing Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Manufacturing on Hightech Employment in 1980&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegM1980</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Manufacturing1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Manufacturing Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Manufacturing on Hightech Employment in 1990&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegM1990</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Manufacturing2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Manufacturing Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Manufacturing on Hightech Employment in 2000&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegM2000</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Retail1980</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Retail Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Retail on Hightech Employment in 1980&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegR1980</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Retail1990</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Retail Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Retail on Hightech Employment in 1990&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegR1990</span><span class="p">)</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">Hightech2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">Retail2000</span><span class="p">[,</span><span class="mi">5</span><span class="p">],</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;log value of Hightech Employment&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;log value of Retail Employment&quot;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Regression of Retail on Hightech Employment in 2000&quot;</span><span class="p">)</span>
+<span class="n">abline</span><span class="p">(</span><span class="n">LogRegR2000</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
 </div></p>
             </div>
             <!-- /.entry-content -->
