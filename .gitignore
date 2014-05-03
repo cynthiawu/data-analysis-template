@@ -3,7 +3,7 @@
 # C extensions
 *.so
 .Rhistory
-.ipynb_checkpoints
+/notebooks/.ipynb_checkpoints/
 # Packages
 *.egg
 *.egg-info
