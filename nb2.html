@@ -1834,23 +1834,74 @@ Data Analysis Project            </a>
 </ul>
 <p>I advise you to work at least in pairs for each project notebook, as you did for the homework assignments. Of course, all team members may participate to each notebook.</p>
 </div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2>
+<h1 id="Project">Project<a class="anchor-link" href="#Project">&#182;</a></h1>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here I'll load the plant data in xml format into a R data frame using the</p>
-<pre><code>create_df_from_plant_xml(file)</code></pre>
-<p>function contained in the R script</p>
-<pre><code>    ./script/plant_df-R</code></pre>
+<p>After trimming the data in Stata, the set of data was small enough to open in R.<br /><br />The number of people working in each industry has been separated into four different levels of education, but since education is not a relevant factor for our project, the first step we took in cleaning the data is to aggregrate the levels of education to produce a total number of people working in each industry.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We created 3 level attributes: “Manufacturing”, “Retail”, “Hightech”, and “bad data”. We assigned the variables in “manu” with level “Manufacturing”, variables in “retail” with level “Retail”, variables in “hightech” with level “Hightech” and else with “bad data”. Then, we dropped the values in level “bad data” and what was left are the data we will be doing the regression analysis with.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[31]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
+<span class="n">library</span><span class="p">(</span><span class="n">foreign</span><span class="p">)</span>
+<span class="n">IndData</span> <span class="o">=</span> <span class="n">read</span><span class="o">.</span><span class="n">dta</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">getwd</span><span class="p">(),</span><span class="s">&#39;/../&#39;</span><span class="p">,</span><span class="s">&#39;data/raw/industrydata.dta&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">))</span>
+<span class="n">edudata</span> <span class="o">&lt;-</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">IndData</span><span class="err">$</span><span class="n">jobs</span><span class="p">)</span> <span class="o">~</span> <span class="n">IndData</span><span class="err">$</span><span class="n">year</span> <span class="o">+</span> <span class="n">IndData</span><span class="err">$</span><span class="n">msa</span> <span class="o">+</span> <span class="n">IndData</span><span class="err">$</span><span class="n">ind1990</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">)</span>
+<span class="n">colnames</span><span class="p">(</span><span class="n">edudata</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;msa&quot;</span><span class="p">,</span> <span class="s">&quot;ind1990&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">)</span>
+      
+<span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">edudata</span><span class="p">))</span>
+
+<span class="n">manu</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;Meat products&quot;</span><span class="p">,</span><span class="s">&quot;Food industries, n.s.&quot;</span><span class="p">,</span><span class="s">&quot;Apparel and accessories, except knit&quot;</span><span class="p">,</span><span class="s">&quot;Pulp, paper, and paperboard mills&quot;</span><span class="p">,</span><span class="s">&quot;Soaps and cosmetics&quot;</span><span class="p">,</span><span class="s">&quot;Miscellaneous plastics products&quot;</span><span class="p">,</span><span class="s">&quot;Footwear, except rubber and plastic&quot;</span><span class="p">,</span><span class="s">&quot;Furniture and fixtures&quot;</span><span class="p">,</span><span class="s">&quot;Iron and steel foundries&quot;</span><span class="p">)</span>
+<span class="n">retail</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;Department stores&quot;</span><span class="p">,</span><span class="s">&quot;Food stores, n.e.c.&quot;</span><span class="p">,</span><span class="s">&quot;Apparel and accessory stores, except shoe&quot;</span><span class="p">,</span><span class="s">&quot;Shoe stores&quot;</span><span class="p">,</span><span class="s">&quot;Furniture and home furnishings stores&quot;</span><span class="p">,</span><span class="s">&quot;Eating and drinking places&quot;</span><span class="p">,</span><span class="s">&quot;Book and stationery stores&quot;</span><span class="p">,</span><span class="s">&quot;Jewelry stores&quot;</span><span class="p">)</span>
+<span class="n">hightech</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;Computers and related equipment&quot;</span><span class="p">,</span><span class="s">&quot;Machinery, except electrical, n.e.c.&quot;</span><span class="p">,</span><span class="s">&quot;Radio, TV, and communication equipment&quot;</span><span class="p">,</span><span class="s">&quot;Electrical machinery, equipment, and supplies, n.e.c.&quot;</span><span class="p">,</span><span class="s">&quot;Aircraft and parts&quot;</span><span class="p">,</span><span class="s">&quot;Computer and data processing services&quot;</span><span class="p">,</span><span class="s">&quot;Computer and data processing services&quot;</span><span class="p">,</span><span class="s">&quot;Engineering, architectural, and surveying services&quot;</span><span class="p">,</span><span class="s">&quot;Machinery, n.s.&quot;</span><span class="p">,</span><span class="s">&quot;Motor vehicles and motor vehicle equipment&quot;</span><span class="p">)</span>
+
+<span class="n">lev</span> <span class="o">=</span> <span class="n">levels</span><span class="p">(</span><span class="n">edudata</span><span class="err">$</span><span class="n">ind1990</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">lev</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">manu</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Manufacturing&quot;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">retail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Retail&quot;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span><span class="k">in</span><span class="o">%</span> <span class="n">hightech</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Hightech&quot;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">lev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;bad data&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">levels</span><span class="p">(</span><span class="n">edudata</span><span class="err">$</span><span class="n">ind1990</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">lev</span>
+
+<span class="n">dataclean</span> <span class="o">=</span> <span class="n">edudata</span><span class="p">[</span><span class="k">as</span><span class="o">.</span><span class="n">character</span><span class="p">(</span><span class="n">edudata</span><span class="err">$</span><span class="n">ind1990</span><span class="p">)</span> <span class="o">!=</span> <span class="s">&quot;bad data&quot;</span><span class="p">,]</span>
+<span class="n">data</span> <span class="o">&lt;-</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">dataclean</span><span class="err">$</span><span class="n">jobs</span><span class="p">)</span> <span class="o">~</span> <span class="n">dataclean</span><span class="err">$</span><span class="n">year</span> <span class="o">+</span> <span class="n">dataclean</span><span class="err">$</span><span class="n">msa</span> <span class="o">+</span> <span class="n">dataclean</span><span class="err">$</span><span class="n">ind1990</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">)</span>
+<span class="n">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;msa&quot;</span><span class="p">,</span> <span class="s">&quot;ind1990&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">)</span>
+
+<span class="n">FinalData</span> <span class="o">&lt;-</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span><span class="mi">4</span><span class="p">])</span> <span class="o">~</span> <span class="n">data</span><span class="p">[,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">data</span><span class="p">[,</span><span class="mi">3</span><span class="p">],</span> <span class="n">FUN</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">)</span>
+
+<span class="n">colnames</span><span class="p">(</span><span class="n">FinalData</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;place&quot;</span><span class="p">,</span> <span class="s">&quot;industry&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">FinalData</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1861,172 +1912,29 @@ In&nbsp;[4]:
 
 
 <div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="box-flex1 output_subarea output_display_data">
+
+
 <pre>
-The rmagic extension is already loaded. To reload it, use:
-  %reload_ext rmagic
+  year         msa       ind1990 jobs
+1 1980 Abilene, TX Meat products  220
+2 1990 Abilene, TX Meat products  322
+3 2000 Abilene, TX Meat products   48
+4 1980   Akron, OH Meat products  140
+5 1990   Akron, OH Meat products   65
+6 2000   Akron, OH Meat products   84
+  year       place      industry  jobs
+1 1980 Abilene, TX Manufacturing   440
+2 1990 Abilene, TX Manufacturing   740
+3 2000 Abilene, TX Manufacturing   214
+4 1980   Akron, OH Manufacturing 11560
+5 1990   Akron, OH Manufacturing  7673
+6 2000   Akron, OH Manufacturing 10566
 
 </pre>
-</div>
-</div>
 
 </div>
 </div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To load the function into a R cell, one needs to use the</p>
-<pre><code>source(R_script_file)</code></pre>
-<p>command in R, which works in a similar way as the</p>
-<pre><code>import module</code></pre>
-<p>command in Python:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
-<span class="n">source</span><span class="p">(</span><span class="s">&#39;./script/plant_df-R&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now, we can create a data frame directly from the XML file using the functin contained in the scrip above.</p>
-<p>If you wish to perform the cleaning using Pandas data frames instead of R data frames, one make the R data frame available to Python cells by using the R magic command:</p>
-<pre><code>%%R -d df_name</code></pre>
-<p>To know more on how to pass variables back and forth between R and Python cells, please have a look at the notebook <a href="http://nbviewer.ipython.org/url/github.com/ipython/ipython/raw/master/examples/notebooks/R%20Magics.ipynb">here</a>.</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[7]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span> <span class="o">-</span><span class="n">d</span> <span class="n">data</span>
-
-<span class="n">library</span><span class="p">(</span><span class="n">XML</span><span class="p">)</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">create_df_from_plant_xml</span><span class="p">(</span><span class="s">&#39;./data/raw/plant.xml&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's load our data into a Pandas data frame:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>COMMON</th>
-      <th>BOTANICAL</th>
-      <th>ZONE</th>
-      <th>LIGHT</th>
-      <th>PRICE</th>
-      <th>AVAILABILITY</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>           Bloodroot</td>
-      <td> Sanguinaria canadensis</td>
-      <td> 4</td>
-      <td> Mostly Shady</td>
-      <td> $2.44</td>
-      <td> 031599</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>           Columbine</td>
-      <td>   Aquilegia canadensis</td>
-      <td> 3</td>
-      <td> Mostly Shady</td>
-      <td> $9.37</td>
-      <td> 030699</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>      Marsh Marigold</td>
-      <td>       Caltha palustris</td>
-      <td> 4</td>
-      <td> Mostly Sunny</td>
-      <td> $6.81</td>
-      <td> 051799</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>             Cowslip</td>
-      <td>       Caltha palustris</td>
-      <td> 4</td>
-      <td> Mostly Shady</td>
-      <td> $9.90</td>
-      <td> 030699</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td> Dutchman's-Breeches</td>
-      <td>    Dicentra cucullaria</td>
-      <td> 3</td>
-      <td> Mostly Shady</td>
-      <td> $6.44</td>
-      <td> 012099</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The actual data cleaning can now begins!</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb">
-</pre></div>
 
 </div>
 </div>
