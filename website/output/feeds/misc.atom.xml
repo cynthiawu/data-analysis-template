@@ -9366,6 +9366,46 @@ In&amp;nbsp;[3]:
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In this data frame, we list for each row entry the year (3 possible values: 1980, 1990, and 2000), msa which represents the city and state, ind1990 which represents the type of the industry (it is 1990 because that was when the industry codes/names were established, the industry codes were arbitrarily assigned), the education level (1-4), and the number of jobs meeting all the conditions in that row entry. Again, the displayed data frame shows only the first 6 entries out of approximately 62,000 entries in the entire trimmed data file.&lt;/p&gt;
-&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Reproducibility</title><link href="http://cynthiawu.github.io/data-analysis-template/reproducibility.html" rel="alternate"></link><updated>2014-02-28T00:00:00-08:00</updated><author><name>Benoit Dherin</name></author><id>tag:cynthiawu.github.io/data-analysis-template,2014-02-28:reproducibility.html</id><summary type="html">&lt;h1&gt;Reproducibility&lt;/h1&gt;
-&lt;h2&gt;Virtual OskiBox&lt;/h2&gt;
-&lt;h2&gt;Software Requirements&lt;/h2&gt;</summary></entry></feed>
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Reproducibility</title><link href="http://cynthiawu.github.io/data-analysis-template/reproducibility.html" rel="alternate"></link><updated>2014-02-28T00:00:00-08:00</updated><author><name>Benoit Dherin</name></author><id>tag:cynthiawu.github.io/data-analysis-template,2014-02-28:reproducibility.html</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Daniel Zezula&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Software-Requirements"&gt;Software Requirements&lt;a class="anchor-link" href="#Software-Requirements"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+
+R version of at least 3.0.0
+
+MATLAB needed to run the matlab script, code provided in scripts.
+
+To download required R packages, run
+
+Rscript requirements.R
+
+while in scripts directory.
+
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Reproducibility"&gt;Reproducibility&lt;a class="anchor-link" href="#Reproducibility"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+
+As stated in the README:
+To reproduce the data:
+
+We cleaned the raw data in stata to get clean1.rda, cannot be reproduced in script. Too large to open in R.
+
+
+For the rest of the data run:
+
+Rscript clean_data.R #Will produce clean2.rda
+Rscript data2mat.R #will produce data.mat for matlab analysis
+
+
+Analysis:
+
+Rscript regression.R #produces linear regression graphs in /graphs, and corresponding data in /data/simulated
+Rscript regression_bystate.R #produces us map graphs of coefficients of linear regression in /graphs, and corresponding data in /data/simulated
+matlab -r matlab_plots.m #will produce graphs of percent growth in /graphs, and corresponding data in /data/simulated. This is assuming you have matlab.
+&lt;/p&gt;</summary></entry></feed>

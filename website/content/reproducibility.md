@@ -3,10 +3,6 @@ author: Benoit Dherin
 date: 2014-02-28
 slug: reproducibility
 
-Reproducibility 
-===============
+{% notebook reproducibility.ipynb cells[:] %}
 
 
-## Virtual OskiBox
-
-## Software Requirements
