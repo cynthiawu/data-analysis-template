@@ -42,41 +42,59 @@ jth = str2num(cell2mat(tth(:,4)));
 jtm = str2num(cell2mat(ttm(:,4)));
 
 
-figure
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jnr-jer)./jer)
 refline(0,0)
 axis([0 250 -2 3])
-title('Percent growth 80 to 90 vs city in retail') 
-figure
+title('Percent growth 80 to 90 vs city in retail')
+saveas(figure1, '../graphs/8090R.jpg')
+
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jnh - jeh)./jeh)
 refline(0,0)
 axis([0 250 -2 3])
-
 title('Percent growth 80 to 90 vs city in hightech')
-figure
+saveas(figure1, '../graphs/8090H.jpg')
+
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jnm - jem)./jem)
 refline(0,0)
 axis([0 250 -2 3])
-
 title('Percent growth 80 to 90 vs city in manufacturing')
-figure
+saveas(figure1, '../graphs/8090M.jpg')
+
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jtr-jnr)./jnr)
 refline(0,0)
 axis([0 250 -2 3])
-
 title('Percent growth 90 to 00 vs city in retail')
-figure
+saveas(figure1, '../graphs/9000R.jpg')
+
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jth - jnh)./jnh)
 refline(0,0)
 axis([0 250 -2 3])
-
 title('Percent growth 90 to 00 vs city in hightech')
-figure
+saveas(figure1, '../graphs/9000H.jpg')
+
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'all');
 scatter(1:219, (jtm - jnm)./jnm)
 refline(0,0)
 axis([0 250 -2 3])
-
 title('Percent growth 90 to 00 vs city in manufacturing')
+saveas(figure1, '../graphs/9000M.jpg')
 
 disp('median for percent growth 80 to 90 vs city in retail')
 median((jnr-jer)./jer)
@@ -91,5 +109,4 @@ disp('median for percent growth 90 to 00 vs city in hightech')
 median((jth - jnh)./jnh)
 disp('median for percent growth 90 to 00 vs city in manufacturing')
 median((jtm - jnm)./jnm)
-
 save('../data/simulated')
