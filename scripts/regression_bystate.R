@@ -58,12 +58,6 @@ for (i in 1:length(states)) {
 }
 coeff1[is.na(coeff)] <- 0
 
-
-
-install.packages("maps")
-install.packages("ggplot2")
-install.packages("data.table")
-
 require(maps)
 require(ggplot2)
 require(data.table)
