@@ -74,7 +74,9 @@ df <- data.frame(region = states, value = mapdata[,2], stringsAsFactors = FALSE)
 map.data <- merge(us.state.map, df, by="region", all = T)
 map.data <- map.data[order(map.data$order),]
 
+pdf('../graphs/mapplot-manu.pdf', width=7.5 ,height=4.5)
 ggplot(map.data, aes(x=long, y =lat, group=group, fill = value)) + geom_polygon(colour = "white")
+dev.off()
 
 mapdata1 <- data.frame(states, coeff1)
 
@@ -83,5 +85,6 @@ df1 <- data.frame(region = states, value1 = mapdata1[,2], stringsAsFactors = FAL
 map.data <- merge(us.state.map, df1, by="region", all = T)
 map.data <- map.data[order(map.data$order),]
 
+pdf('../graphs/mapplot-retail.pdf', width=7.5 ,height=4.5)
 ggplot(map.data, aes(x=long, y =lat, group=group, fill = value1)) + geom_polygon(colour = "white")
-
+dev.off()
