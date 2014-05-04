@@ -122,6 +122,28 @@ require(data.table)
 
 us.state.map <- map_data('state')
 head(us.state.map)
+statesnames = c("alabama", "alaska", "arizona",	"arkansas", "california", "colorado", "connecticut", "delaware", "district of columbia", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "new hampshire", "new jersey", "new mexico", "new york", "north carolina", "north dakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhode island", "south carolina", "south dakota", "tennessee", "texas", "utah", "vermont", "virginia", "washington", "west virginia", "wisconsin", "wyoming")
+abbrev_string = c("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY")
+abbrev_variable = c(1, AK, AZ, AR, CA, CO, CT, DE, DC, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY)
+
+lev1 = levels(databystates$place)
+
+for (i in 1:length(lev1)) {
+	tmp = as.character(lev1[i])
+	lev1[i] <- substr(tmp, nchar(tmp)-1, nchar(tmp))
+}
+levels(databystates$place) <- lev1
+
+lev3 = levels(H1980State[,2])
+
+for (i in 1:length(abbrev_string)) {
+  index = match(abbrev_string[i], as.character(lev3))
+  lev3[index] <- statesnames[index]
+}
+
+levels(NoEduData$ind1990) <- lev
+
+
 states <- levels(as.factor(us.state.map$region))
 df <- data.frame(region = states, value = runif(length(states), min=0, max=100), stringsAsFactors = FALSE)
 
@@ -134,9 +156,14 @@ ggplot(map.data, aes(x = long, y = lat, group=group, fill=value)) + geom_polygon
 
 
 
-
-
 map.county <- data.table(map_data('county'))
 map.county[,value:=sample(5, 1), by=list(region, subregion)]
 
 ggplot(map.county, aes(x = long, y = lat, group=group, fill=as.factor(value))) + geom_polygon(colour = "white")
+
+
+lev_state = levels(FinalData$place)
+for (i in 1:length(lev_state)) {
+	abbrev_variable[,i] <- subset(FinalData, place == abbrev_string[,i])}
+
+
