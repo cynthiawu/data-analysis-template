@@ -1,0 +1,5 @@
+install.packages("maps",  repos='http://cran.us.r-project.org')
+install.packages("ggplot2",  repos='http://cran.us.r-project.org')
+install.packages("data.table",  repos='http://cran.us.r-project.org')
+install.packages("foreign",  repos='http://cran.us.r-project.org')
+install.packages("R.matlab",  repos='http://cran.us.r-project.org')
