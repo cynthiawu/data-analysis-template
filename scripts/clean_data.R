@@ -4,8 +4,8 @@ manu = c("Meat products","Food industries, n.s.","Apparel and accessories, excep
 retail = c("Department stores","Food stores, n.e.c.","Apparel and accessory stores, except shoe","Shoe stores","Furniture and home furnishings stores","Eating and drinking places","Book and stationery stores","Jewelry stores")
 hightech = c("Computers and related equipment","Machinery, except electrical, n.e.c.","Radio, TV, and communication equipment","Electrical machinery, equipment, and supplies, n.e.c.","Aircraft and parts","Computer and data processing services","Computer and data processing services","Engineering, architectural, and surveying services","Machinery, n.s.","Motor vehicles and motor vehicle equipment")
 
-edudata <- aggregate(cbind(IndData$jobs) ~ IndData$year + IndData$msa + IndData$ind1990, FUN = sum)
-colnames(edudata) <- c("year", "msa", "ind1990", "jobs")
+edudata <- aggregate(cbind(IndData[,4]) ~ IndData[,1] + IndData[,2] + IndData[,3], FUN = sum)
+colnames(edudata) <- c("year", "place", "ind1990", "jobs")
 
 lev = levels(edudata$ind1990)
 
@@ -26,8 +26,8 @@ for (i in 1:length(lev)) {
 levels(edudata$ind1990) <- lev
 
 dataclean = edudata[as.character(edudata$ind1990) != "bad data",]
-data <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
-colnames(data) <- c("year", "msa", "ind1990", "jobs")
+FinalData <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
+colnames(FinalData) <- c("year", "msa", "ind1990", "jobs")
 saveRDS(data,file=paste(getwd(),'/../','data/cleaned/clean2.rda',sep=''))
 
 
