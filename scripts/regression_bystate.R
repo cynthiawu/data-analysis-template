@@ -21,6 +21,7 @@ for (i in 1:length(lev)) {
 
 levels(data$place) <- lev
 coeff <- vector()
+coeff1 <- vector()
 
 for (i in 1:length(states)) {
   tmpd = data[as.character(data$place) == states[i],]
@@ -38,6 +39,26 @@ for (i in 1:length(states)) {
    })
 }
 coeff[is.na(coeff)] <- 0
+
+
+for (i in 1:length(states)) {
+  tmpd = data[as.character(data$place) == states[i],]
+  tmpdh = tmpd[as.character(tmpd$industry) == "Hightech",]
+  tmpdr = tmpd[as.character(tmpd$industry) == "Retail",]
+  result = tryCatch({
+    summ =  summary(lm(tmpdh[,4] ~ tmpdr[,4]))
+    coef1 = summ$coefficients[2,1]
+    if (is.na(coef1)) {
+      coef1 = 0
+     }
+    coeff1[i] = coef1
+}, error = function(e){
+     coeff1[i] = 0
+   })
+}
+coeff1[is.na(coeff)] <- 0
+
+
 
 install.packages("maps")
 install.packages("ggplot2")
@@ -61,4 +82,12 @@ map.data <- map.data[order(map.data$order),]
 
 ggplot(map.data, aes(x=long, y =lat, group=group, fill = value)) + geom_polygon(colour = "white")
 
+mapdata1 <- data.frame(states, coeff1)
+
+df1 <- data.frame(region = states, value1 = mapdata1[,2], stringsAsFactors = FALSE)
+
+map.data <- merge(us.state.map, df1, by="region", all = T)
+map.data <- map.data[order(map.data$order),]
+
+ggplot(map.data, aes(x=long, y =lat, group=group, fill = value1)) + geom_polygon(colour = "white")
 
