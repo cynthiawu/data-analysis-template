@@ -26,8 +26,9 @@ for (i in 1:length(lev)) {
 levels(edudata$ind1990) <- lev
 
 dataclean = edudata[as.character(edudata$ind1990) != "bad data",]
-FinalData <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$msa + dataclean$ind1990, FUN = sum)
+colnames(dataclean) <- c("year", "place", "ind1990", "jobs")
+FinalData <- aggregate(cbind(dataclean$jobs) ~ dataclean$year + dataclean$place + dataclean$ind1990, FUN = sum)
 colnames(FinalData) <- c("year", "msa", "ind1990", "jobs")
-saveRDS(data,file=paste(getwd(),'/../','data/cleaned/clean2.rda',sep=''))
+saveRDS(FinalData,file=paste(getwd(),'/../','data/cleaned/clean2.rda',sep=''))
 
 
