@@ -1852,21 +1852,25 @@ pdflatex NB4_report.tex</code></pre>
 <ul>
 <li><p>How does high-technology sector employment affect other industries?</p></li>
 <li><p>Which industry has experienced the highest influence from the growth in high-technology sector?</p></li>
-<li><p>How does the spillover effect affect different states differently? <br /><br /></p></li>
+<li><p>Does the spillover effect affect states differently? <br /><br /></p></li>
 </ul>
-<p>In order to do the analysis, we utilized the concept of linear regression.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Challenges">Challenges<a class="anchor-link" href="#Challenges">&#182;</a></h1>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One of the initial difficulties we had was opening the raw dataset in R. Since the size of our original data set was too large, everytime we tried to load it in R, it would crash. We eventually loaded the dataset in Stata, and had to trim the data there first. Since none of us really knew how to use Stata, it was a challenge to learn the right techniques to execute the inital trimming of the data.</p>
+<p>One of the initial difficulties we had was opening the raw dataset in R. Since the size of our original data set was too large, everytime we tried to load it in R, it would crash. We tried several times to load the data in Stata and SQL, and even opened it in Excel, before eventually successfuly loading the dataset in Stata, and had to trim the data there first. Since none of us really knew how to use Stata, it was a challenge to learn the right techniques to execute the inital trimming of the data.<br /><br /> Another difficulty that we ran into was figuring out how to run the maps function to create graphs with our data. We had to run a regression for each state, but because each state had a different number of corresponding data points, we couldn't just write one for loop to run the regression on all the states. It didn't make sense to run the regression 50 times, so we had to find a different way to go about this process. We ran into some trouble writing the code to replace the names of the city with the corresponding state, since the maps function only takes in state names and not city names. It was also a challenge to write the for loops to run the regression on all the states.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Presentation-of-Findings">Presentation of Findings<a class="anchor-link" href="#Presentation-of-Findings">&#182;</a></h1>
 </div>
-</p>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Moreover, we also performed a separate regression so that we may visualize the regression results on a color-coded map of the US. In order to perform the state regression, we had to first relabel the location column entries so that all the cities would be replaced with their corresponding states, so that we may focus on analyzing the differences in coefficients among the states rather than among the cities.</p>
+<p>After regressing the state data and visualizing the data using the US map, we discovered that there is a contrast between the hightech-manufacturing regression and the hightech-retail regression. For the hightech-manufacturing regression, a majority of the states had regression coefficients that were negative, which indicates that increases in high-tech employment lead to a decrease in manufacturing employment. On the other hand, a majority of the states in the hightech-retail regression had regression coefficients that were positive, which implies that increases in high-tech employment lead to an increase in retail employment. This makes sense because an increase in high-tech employment naturally leads to more innovation in technology, with tech workers creating more new technologies that might automate jobs in the manufacturing sector and therefore make certain manufacturing jobs obsolete. It also increases employment in the retail industry because new technology employers will increase the needs for other services like food.</p>
+<p>Based on these findings, we conclude that high-tech growth tends to curb employment in the manufacturing industry, while the same growth tends to spur employment growth in the retail industry. This confirms our prediction that high-tech employment growth would adversely affect manufacturing employment while benefit retail employment.</p>
+</div></p>
             </div>
             <!-- /.entry-content -->
         </article>
