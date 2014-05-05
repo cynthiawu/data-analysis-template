@@ -1837,11 +1837,28 @@ Data Analysis Project            </a>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
 </pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+The rmagic extension is already loaded. To reload it, use:
+  %reload_ext rmagic
+
+</pre>
+</div>
+</div>
 
 </div>
 </div>
@@ -1852,20 +1869,25 @@ In&nbsp;[2]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After trimming the data in Stata, the set of data was small enough to open in R.<br /><br />The number of people working in each industry has been separated into four different levels of education, but since education is not a relevant factor for our project, the first step we took in cleaning the data is to aggregrate the levels of education to produce a total number of people working in each industry.</p>
+<p>After trimming the data in Stata, the set of data was small enough to open in R.<br /><br />The number of people working in each industry has been separated into four different levels of education, but since education is not a relevant factor for our project, the first step we took in cleaning the data is to aggregrate the levels of education to produce a total number of people working in each industry. <br /><br />To do this, we took the following steps:</p>
+<ul>
+<li><p>We first deleted the column with the education levels by only creating a subset of the data that did not include the education column</p></li>
+<li><p>After deleting that column, we were left with several rows that had the same information, so using the aggregate function, we combined those to give the total number of people employed in each industry</p></li>
+</ul>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We created 3 level attributes: “Manufacturing”, “Retail”, “Hightech”, and “bad data”. We assigned the variables in “manu” with level “Manufacturing”, variables in “retail” with level “Retail”, variables in “hightech” with level “Hightech” and else with “bad data”. Then, we dropped the values in level “bad data” and what was left are the data we will be doing the regression analysis with.</p>
+<p>We first decided on &quot;manufacturing&quot; and &quot;retail&quot; as the industries that we wanted to analyze the tech spillover in. To do this, we went through the data and classified each job as either &quot;manufacturing&quot;, &quot;retail&quot;, &quot;hightech&quot;, or irrelevant to our research (&quot;bad data&quot;). We created 4 level attributes: “Manufacturing”, “Retail”, “Hightech”, and “bad data”. We assigned the variables in “manu” with level “Manufacturing”, variables in “retail” with level “Retail”, variables in “hightech” with level “Hightech” and else with “bad data”.<br /><br /> Afterwards, we dropped the values with level = “bad data&quot;, and the data left is what we will be doing the regression analysis with.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[31]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
 <span class="n">library</span><span class="p">(</span><span class="n">foreign</span><span class="p">)</span>
 <span class="n">IndData</span> <span class="o">=</span> <span class="n">read</span><span class="o">.</span><span class="n">dta</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">getwd</span><span class="p">(),</span><span class="s">&#39;/../&#39;</span><span class="p">,</span><span class="s">&#39;data/raw/industrydata.dta&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">))</span>
+<span class="n">IndData</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span><span class="n">IndData</span><span class="p">,</span> <span class="n">select</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;msa&quot;</span><span class="p">,</span> <span class="s">&quot;ind1990&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">))</span>
 <span class="n">edudata</span> <span class="o">&lt;-</span> <span class="n">aggregate</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">IndData</span><span class="err">$</span><span class="n">jobs</span><span class="p">)</span> <span class="o">~</span> <span class="n">IndData</span><span class="err">$</span><span class="n">year</span> <span class="o">+</span> <span class="n">IndData</span><span class="err">$</span><span class="n">msa</span> <span class="o">+</span> <span class="n">IndData</span><span class="err">$</span><span class="n">ind1990</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">)</span>
 <span class="n">colnames</span><span class="p">(</span><span class="n">edudata</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;msa&quot;</span><span class="p">,</span> <span class="s">&quot;ind1990&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">)</span>
       
@@ -1901,6 +1923,7 @@ In&nbsp;[31]:
 
 <span class="n">colnames</span><span class="p">(</span><span class="n">FinalData</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="s">&quot;year&quot;</span><span class="p">,</span> <span class="s">&quot;place&quot;</span><span class="p">,</span> <span class="s">&quot;industry&quot;</span><span class="p">,</span> <span class="s">&quot;jobs&quot;</span><span class="p">)</span>
 
+<span class="n">saveRDS</span><span class="p">(</span><span class="n">FinalData</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="n">getwd</span><span class="p">(),</span> <span class="s">&#39;/../&#39;</span><span class="p">,</span> <span class="s">&#39;data/cleaned/FinalData.rda&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">FinalData</span><span class="p">))</span>
 </pre></div>
 
@@ -1940,18 +1963,8 @@ In&nbsp;[31]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb">
-</pre></div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first output above is a sample of our data with the aggregated education levels. It shows the number of people employed for each job in a certain state for the years 1980, 1990, and 2000.<br /><br />The second output shows a sample of our data after we've dropped all the irrelevant jobs and classified all the other jobs as either &quot;manufacturing&quot;, &quot;retail&quot;, or &quot;hightech&quot;. It shows the total number of people employed in the manufacturing, retail, and hightech industries in a certain state in the years 1980, 1990, and 2000.</p>
 </div></p>
             </div>
             <!-- /.entry-content -->

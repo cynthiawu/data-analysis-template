@@ -1720,7 +1720,7 @@ init_mathjax();
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Reproducibility"/>
             <meta property="og:url" content="http://cynthiawu.github.io/data-analysis-template/reproducibility.html"/>
-            <meta property="og:description" content="Reproducibility Virtual OskiBox Software Requirements"/>
+            <meta property="og:description" content="Team members responsible for this notebook: Daniel Zezula Software Requirements¶ R version of at least 3.0.0 MATLAB needed to run the matlab script, code provided in scripts. To download required R packages, run Rscript requirements.R while in scripts directory. Reproducibility¶ As stated in the README: To reproduce ..."/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://cynthiawu.github.io/data-analysis-template/theme/css/bootstrap.min.css" type="text/css"/>
@@ -1813,9 +1813,49 @@ Data Analysis Project            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h1>Reproducibility</h1>
-<h2>Virtual OskiBox</h2>
-<h2>Software Requirements</h2>
+                <p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="team-members-responsible-for-this-notebook">Team members responsible for this notebook:</h2>
+<ul>
+<li>Daniel Zezula</li>
+</ul>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Software-Requirements">Software Requirements<a class="anchor-link" href="#Software-Requirements">&#182;</a></h1>
+</div>
+
+R version of at least 3.0.0
+
+MATLAB needed to run the matlab script, code provided in scripts.
+
+To download required R packages, run
+
+Rscript requirements.R
+
+while in scripts directory.
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Reproducibility">Reproducibility<a class="anchor-link" href="#Reproducibility">&#182;</a></h1>
+</div>
+
+As stated in the README:
+To reproduce the data:
+
+We cleaned the raw data in stata to get clean1.rda, cannot be reproduced in script. Too large to open in R.
+
+
+For the rest of the data run:
+
+Rscript clean_data.R #Will produce clean2.rda
+Rscript data2mat.R #will produce data.mat for matlab analysis
+
+
+Analysis:
+
+Rscript regression.R #produces linear regression graphs in /graphs, and corresponding data in /data/simulated
+Rscript regression_bystate.R #produces us map graphs of coefficients of linear regression in /graphs, and corresponding data in /data/simulated
+matlab -r matlab_plots.m #will produce graphs of percent growth in /graphs, and corresponding data in /data/simulated. This is assuming you have matlab.
+</p>
             </div>
             <!-- /.entry-content -->
         </article>
