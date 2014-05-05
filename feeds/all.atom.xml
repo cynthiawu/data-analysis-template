@@ -23,11 +23,12 @@ pdflatex NB4_report.tex&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;p&gt;List the team members contributing to this notebook, along with their responsabilities:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;team member 1 &lt;strong&gt;name&lt;/strong&gt;: team member 1 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;team member 2 &lt;strong&gt;name&lt;/strong&gt;: team member 2 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;etc.&lt;/li&gt;
+&lt;li&gt;team member 1 &lt;strong&gt;Tiffany Wong&lt;/strong&gt;: team member 1 &lt;strong&gt;Writing the topic sections and the challenges section&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;team member 2 &lt;strong&gt;Timothy Yau&lt;/strong&gt;: team member 2 &lt;strong&gt;Writing the findings section, interpreting maps we got&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;team member 3 &lt;strong&gt;Biying Li&lt;/strong&gt;: team member 3 &lt;strong&gt;Writing the findings section, explaining the regression results, loading graphs into the notebooks&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;team member 4 &lt;strong&gt;Cynthia Wu&lt;/strong&gt;: team member 4 &lt;strong&gt;Writing and editting findings section&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;team member 5 &lt;strong&gt;Daniel Zezula&lt;/strong&gt;: team member 5 &lt;strong&gt;Writing and editting the finding section, running the slideshow function&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I advise you to work at least in pairs for each project notebook, as you did for the homework assignments. Of course, all team members may participate to each notebook.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Topic"&gt;Topic&lt;a class="anchor-link" href="#Topic"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
@@ -46,18 +47,18 @@ pdflatex NB4_report.tex&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;One of the initial difficulties we had was opening the raw dataset in R. Since the size of our original data set was too large, everytime we tried to load it in R, it would crash. We tried several times to load the data in Stata and SQL, and even opened it in Excel, before eventually successfuly loading the dataset in Stata, and had to trim the data there first. Since none of us really knew how to use Stata, it was a challenge to learn the right techniques to execute the inital trimming of the data.&lt;br /&gt;&lt;br /&gt; Another difficulty that we ran into was figuring out how to run the maps function to create graphs with our data. We had to run a regression for each state, but because each state had a different number of corresponding data points, we couldn't just write one for loop to run the regression on all the states. It didn't make sense to run the regression 50 times, so we had to find a different way to go about this process. We ran into some trouble writing the code to replace the names of the city with the corresponding state, since the maps function only takes in state names and not city names. It was also a challenge to write the for loops to run the regression on all the states.&lt;/p&gt;
+&lt;p&gt;Our initial difficulties we had was opening the raw dataset in R. Since the size of our original data set was too large, everytime we tried to load it in R, it would crash. We tried several times to load the data in Stata and SQL, and even opened it in Excel, before eventually successfuly loading the dataset in Stata, and had to trim the data there first. Since none of us really knew how to use Stata, it was a challenge to learn the right techniques to execute the inital trimming of the data.&lt;/p&gt;
+&lt;p&gt;Another difficulty that we ran into was figuring out how to run the maps function to create graphs with our data. We had to run a regression for each state, but because each state had a different number of corresponding data points, we couldn't just write one for loop to run the regression on all the states. It didn't make sense to run the regression 50 times, so we had to find a different way to go about this process. We ran into some trouble writing the code to replace the names of the city with the corresponding state, since the maps function only takes in state names and not city names. It was also a challenge to write the for loops to run the regression on all the states.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Presentation-of-Findings"&gt;Presentation of Findings&lt;a class="anchor-link" href="#Presentation-of-Findings"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
 
-As described in Data Analysis Notebook, we ran log regression for employment in retail industry and manufacturing industry on that in hightech industry. With data in 1980, 1990, and 2000, we are able to generate 6 regression results: LogRegM1980 (results for log regression of manufacturing employment in 1980), LogRegM1990, LogRegM2000, LogRegR1980, LogRegR1990, LogRegR2000. 
-
-The first graph below shows the regression results for manufacturing industry. As we can see in the first result, for all three years we are considering, manufacturing employment has coefficients smaller than 1. This indicates that when employment in hightech industry increases by 1, the employment in manufacturing tend to go up by about 0.8. Therefore the hightech industry employment has a small spill-over effects on the manufacturing industry. Hightech employment didn't have obvious effects on stimulating job growth in manufacturing industry.
-
-While for retail industry, the findings are quite different. The second graph below shows the regression results for retail industry. For all three years we are considering, the regression coefficients for retail industry are above 1. This shows that for 1 unit increase in hightech employment, there is about 1.5 increase in jobs in retail industry. Therefore, we can say that hightech employment has a positive spillover, which stimulates the growth in retail jobs.
-
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;As described in Data Analysis Notebook, we ran log regression for employment in retail industry and manufacturing industry on that in hightech industry. With data in 1980, 1990, and 2000, we are able to generate 6 regression results: LogRegM1980 (results for log regression of manufacturing employment in 1980), LogRegM1990, LogRegM2000, LogRegR1980, LogRegR1990, LogRegR2000.&lt;/p&gt;
+&lt;p&gt;The first graph below shows the regression results for manufacturing industry. As we can see in the first result, for all three years we are considering, manufacturing employment has coefficients smaller than 1. This indicates that when employment in hightech industry increases by 1, the employment in manufacturing tend to go up by about 0.8. Therefore the hightech industry employment has a small spill-over effects on the manufacturing industry. Hightech employment didn't have obvious effects on stimulating job growth in manufacturing industry.&lt;/p&gt;
+&lt;p&gt;While for retail industry, the findings are quite different. The second graph below shows the regression results for retail industry. For all three years we are considering, the regression coefficients for retail industry are above 1. This shows that for 1 unit increase in hightech employment, there is about 1.5 increase in jobs in retail industry. Therefore, we can say that hightech employment has a positive spillover, which stimulates the growth in retail jobs.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -4515,26 +4516,15 @@ LbZDAiRAAiRAAiRAAiRAAhoj8P+rByuV7kcCvQAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
 &lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Data Analysis</title><link href="http://cynthiawu.github.io/data-analysis-template/nb3.html" rel="alternate"></link><updated>2014-03-03T00:00:00-08:00</updated><author><name>Benoit Dherin</name></author><id>tag:cynthiawu.github.io/data-analysis-template,2014-03-03:nb3.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;team member 1 &lt;strong&gt;name&lt;/strong&gt;: team member 1 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;team member 2 &lt;strong&gt;name&lt;/strong&gt;: team member 2 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;etc.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 1&lt;strong&gt;Daniel Zezula&lt;/strong&gt;: team member 1 &lt;em&gt;* performed regression analysis&lt;/em&gt;*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 2 &lt;strong&gt;Biying Li&lt;/strong&gt;: team member 2 ** generated map **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 3 &lt;strong&gt;Tiffany Wong&lt;/strong&gt;: team member 3 &lt;em&gt;* helped with analysis and wrote markdown&lt;/em&gt;*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 4&lt;strong&gt;Tim Yau&lt;/strong&gt;: team member 4 ** helped with analysis and wrote markdown **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 5 &lt;strong&gt;Tianyi Wu&lt;/strong&gt;: team member 5 &lt;strong&gt;helped with analysis and wrote markdown&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
@@ -24655,11 +24645,12 @@ AKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;p&gt;List the team members contributing to this notebook, along with their responsabilities:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;team member 1 &lt;strong&gt;name&lt;/strong&gt;: team member 1 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;team member 2 &lt;strong&gt;name&lt;/strong&gt;: team member 2 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;etc.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 1&lt;strong&gt;Daniel Zezula&lt;/strong&gt;: team member 1 &lt;em&gt;* cleaned data&lt;/em&gt;*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 2 &lt;strong&gt;Biying Li&lt;/strong&gt;: team member 2 ** cleaned data **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 3 &lt;strong&gt;Tiffany Wong&lt;/strong&gt;: team member 3 &lt;em&gt;* helped with cleaning and wrote markdown&lt;/em&gt;*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 4&lt;strong&gt;Tim Yau&lt;/strong&gt;: team member 4 ** helped with cleaning wrote markdown **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 5 &lt;strong&gt;Tianyi Wu&lt;/strong&gt;: team member 5 &lt;strong&gt;helped with cleaning and wrote markdown&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I advise you to work at least in pairs for each project notebook, as you did for the homework assignments. Of course, all team members may participate to each notebook.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -24796,9 +24787,10 @@ In&amp;nbsp;[5]:
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;team member 1 &lt;strong&gt;name&lt;/strong&gt;: team member 1 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;team member 2 &lt;strong&gt;name&lt;/strong&gt;: team member 2 &lt;strong&gt;responsabilities&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;etc.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 1 &lt;strong&gt;Biying Li&lt;/strong&gt;: team member 1 **gathered and extracted data **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 2 &lt;strong&gt;Tianyi Wu&lt;/strong&gt;: team member 2 ** gathered and extracted data **&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 3 &lt;strong&gt;Tiffany Wong&lt;/strong&gt;: team member 3 &lt;strong&gt;wrote markdown&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;team member 4 &lt;strong&gt;Tim Yau&lt;/strong&gt;: team member 4** wrote markdown **&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
