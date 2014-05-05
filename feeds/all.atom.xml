@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Data Analysis Project</title><link href="http://cynthiawu.github.io/data-analysis-template/" rel="alternate"></link><link href="http://cynthiawu.github.io/data-analysis-template/feeds/all.atom.xml" rel="self"></link><id>http://cynthiawu.github.io/data-analysis-template/</id><updated>2014-03-04T00:00:00-08:00</updated><entry><title>Project Report</title><link href="http://cynthiawu.github.io/data-analysis-template/nb4.html" rel="alternate"></link><updated>2014-03-04T00:00:00-08:00</updated><author><name>Benoit Dherin</name></author><id>tag:cynthiawu.github.io/data-analysis-template,2014-03-04:nb4.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;In this notebook, you'll sumarize your finding for the class presentation.&lt;/p&gt;
-&lt;p&gt;The class presentation will use this notebook in slide mode, as I do during lecture time.&lt;/p&gt;
-&lt;p&gt;You'll need to download the following &lt;a href="https://github.com/fperez/nb-slideshow-template/archive/master.zip"&gt;zip file&lt;/a&gt;, unzip it, and run the following notebook &lt;code&gt;install-support.ipynb&lt;/code&gt; to install the slide capabilities.&lt;/p&gt;
-&lt;p&gt;The notebook &lt;code&gt;notebook-slideshow-example.ipynb&lt;/code&gt; will give you examples on how to use slides within the iPython notebook.&lt;/p&gt;
-&lt;p&gt;You should also write this notebook so that you can convert it nicely into a pdf document using the commands&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ipython nbconvert NB4_report.pynb --to latex
-pdflatex NB4_report.tex&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;See &lt;a href="http://ipython.org/ipython-doc/rel-1.0.0/interactive/nbconvert.html"&gt;here&lt;/a&gt; for further references on how to do that.&lt;/p&gt;
-&lt;p&gt;In this notebook, you'll&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;describe your problem as stated in the propectus&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;comment on your data sources, on their format, on the difficulties to get them&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;present the main challenge you encountered&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;present your finding in the form of expresive graphics&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Be sure to include an introduction section motivating your visualizations, with a description of the substantive context and why it is interesting.&lt;/p&gt;
-&lt;p&gt;Cite the source of the data and any other references that you used in carrying out your project.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;p&gt;List the team members contributing to this notebook, along with their responsabilities:&lt;/p&gt;
 &lt;ul&gt;
@@ -24631,16 +24612,6 @@ AKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Data Cleaning</title><link href="http://cynthiawu.github.io/data-analysis-template/nb2.html" rel="alternate"></link><updated>2014-03-02T00:00:00-08:00</updated><author><name>Benoit Dherin</name></author><id>tag:cynthiawu.github.io/data-analysis-template,2014-03-02:nb2.html</id><summary type="html">&lt;p&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;In this notebook, you'll&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;load the raw data into R or Pandas dataframe&lt;/strong&gt; from the &lt;code&gt;./data/raw&lt;/code&gt; directory using the functions and classes (written during the data gathering phase) in the &lt;code&gt;./script&lt;/code&gt; directory&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;perform visual exploration&lt;/strong&gt; on your data variables to detect anomalies, errors, outliers, interesting features etc.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;clean categorical and quantitative variables&lt;/strong&gt; (by removing observations and variables with too many missing values, by consolidating categorical variables, by selecting an appropriate subset of variables and observations for later analysis, etc.)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;save the cleaned data&lt;/strong&gt; into csv files in the &lt;code&gt;./data/cleaned&lt;/code&gt; directory&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;save interesting graphics&lt;/strong&gt; you obtained during visual exploration into the &lt;code&gt;./visualiation&lt;/code&gt; directory&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="team-members-responsible-for-this-notebook"&gt;Team members responsible for this notebook:&lt;/h2&gt;
 &lt;p&gt;List the team members contributing to this notebook, along with their responsabilities:&lt;/p&gt;
