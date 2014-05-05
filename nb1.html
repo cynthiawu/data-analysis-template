@@ -1908,11 +1908,11 @@ mkdir: cannot create directory &#96;../visualizations&apos;: File exists
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[9]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="s">&#39;/home/oski/Desktop/image.png&#39;</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="s">&#39;../graphs/raw_data.png&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1923,7 +1923,7 @@ In&nbsp;[9]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[9]:</div>
+    Out[1]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -6015,7 +6015,7 @@ oOlPA0UAAAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -6031,10 +6031,10 @@ In&nbsp;[2]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[6]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">&quot;/home/oski/data-analysis-template/data/raw/data.dta&quot;</span><span class="p">)</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s">&quot;../data/raw/data.dta&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -6044,45 +6044,15 @@ In&nbsp;[4]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
 <pre>
-&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 539212 entries, 0 to 539211
-Data columns (total 5 columns):
-year 539212 non-null values
-msa 539212 non-null values
-ind1990 539212 non-null values
-edu 539212 non-null values
-jobs 539212 non-null values
-dtypes: float32(1), float64(1), int64(1), object(2)
-</pre>
-</div>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-6-327dc02a1924&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span>pd<span class="ansiyellow">.</span>read_stata<span class="ansiyellow">(</span><span class="ansiblue">&quot;../data/raw/data.dta&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
 
-</div>
-</div>
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-<pre>
-&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 539212 entries, 0 to 539211
-Data columns (total 5 columns):
-year 539212 non-null values
-msa 539212 non-null values
-ind1990 539212 non-null values
-edu 539212 non-null values
-jobs 539212 non-null values
-dtypes: float32(1), float64(1), int64(1), object(2)
-</pre>
-</div>
-
+<span class="ansired">AttributeError</span>: &apos;module&apos; object has no attribute &apos;read_stata&apos;</pre>
 </div>
 </div>
 
@@ -6100,12 +6070,12 @@ dtypes: float32(1), float64(1), int64(1), object(2)
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[7]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">R</span>
 <span class="n">library</span><span class="p">(</span><span class="n">foreign</span><span class="p">)</span>
-<span class="n">IndData</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">dta</span><span class="p">(</span><span class="s">&quot;/home/oski/data-analysis-template/data/raw/industrydata.dta&quot;</span><span class="p">)</span>
+<span class="n">IndData</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">dta</span><span class="p">(</span><span class="s">&quot;../data/raw/industrydata.dta&quot;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">(</span><span class="n">IndData</span><span class="p">))</span>
 </pre></div>
 
@@ -6121,13 +6091,13 @@ In&nbsp;[3]:
 
 
 <pre>
- year msa ind1990 edu jobs
-1 1980 Abilene, TX Meat products 1 140
-2 1980 Abilene, TX Meat products 2 60
-3 1980 Abilene, TX Meat products 3 20
-4 1980 Abilene, TX Apparel and accessories, except knit 1 120
-5 1980 Abilene, TX Apparel and accessories, except knit 2 20
-6 1980 Abilene, TX Apparel and accessories, except knit 3 0
+  year         msa                              ind1990 edu jobs
+1 1980 Abilene, TX                        Meat products   1  140
+2 1980 Abilene, TX                        Meat products   2   60
+3 1980 Abilene, TX                        Meat products   3   20
+4 1980 Abilene, TX Apparel and accessories, except knit   1  120
+5 1980 Abilene, TX Apparel and accessories, except knit   2   20
+6 1980 Abilene, TX Apparel and accessories, except knit   3    0
 
 </pre>
 
