@@ -5,7 +5,7 @@ Download needed R packages, run:
 Rscript requirements.R
 
 
-To reproduce the data:
+To reproduce the data (all scripts in /scripts on github):
 
 We cleaned the raw data in stata to get clean1.rda, cannot be reproduced. Too large to open in R.
 
